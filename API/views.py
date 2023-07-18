@@ -5,8 +5,8 @@ from django.http import HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-USERS_PATH = '/Users/marouane/Desktop/WS/upwork/landerd/tmp/users.txt'
-CONFIG_PATH = '/Users/marouane/Desktop/WS/upwork/landerd/tmp/twitterbot.properties'
+USERS_PATH = '/opt/landerdbot/users.txt'
+CONFIG_PATH = '/opt/landerdbot/twitterbot.properties'
 
 @api_view(['GET'])
 def get_server_status(request):
