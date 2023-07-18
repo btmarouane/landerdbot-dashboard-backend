@@ -7,11 +7,12 @@ from rest_framework.response import Response
 
 USERS_PATH = '/opt/landerdbot/users.txt'
 CONFIG_PATH = '/opt/landerdbot/twitterbot.properties'
+BOT_SERVICE_NAME = 'twitterbot'
 
 @api_view(['GET'])
 def get_server_status(request):
     try:
-        command = ['twitterbot', 'status']
+        command = ['systemctl', 'is-active', BOT_SERVICE_NAME]
         result = subprocess.run(command, capture_output=True, text=True)
         status = result.stdout.strip()
         is_active = (status == 'active')
