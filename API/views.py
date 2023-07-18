@@ -51,7 +51,8 @@ def update_users(request):
         users += '\n'
         with open(USERS_PATH, 'w') as file:
             file.write(users)
-
+        command = ['systemctl', 'restart', BOT_SERVICE_NAME]
+        subprocess.run(command, check=True)
         return Response(status=200)
     except Exception as e:
         return Response(str(e), status=500)
@@ -68,6 +69,8 @@ def update_keywords(request):
         config.set('DEFAULT', 'KEYWORD', keywords)
         with open(CONFIG_PATH, 'w') as configfile:
             config.write(configfile)
+        command = ['systemctl', 'restart', BOT_SERVICE_NAME]
+        subprocess.run(command, check=True)
         return Response(status=200)
     except Exception as e:
         return Response(str(e), status=500)
